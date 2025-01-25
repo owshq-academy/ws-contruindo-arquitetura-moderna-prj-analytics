@@ -1,1 +1,3 @@
-# ws-contruindo-arquitetura-moderna-dados-prj-analytics
+# Construção de Arquiteturas Modernas de Dados para Projetos de Analytics
+**Todos os dados e documentos criados são ficticios e criados para treinamentos**
+
