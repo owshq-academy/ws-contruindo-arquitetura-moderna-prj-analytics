@@ -12,10 +12,10 @@ Justificativa: Pois na maioria dos requisitos de negócio foram identificados a 
 
 2.	Quais tecnologias você utilizaria dentro da sua arquitetura?
 
-Resposta: Kafka, Spark, Object Storage
+Resposta: Kafka, Spark, Object Storage, Airflow
 
 Justificativa sua resposta:
 
 3.	Explique como as tecnologias escolhidas irão se integrar na sua arquitetura de dados.
 
-Resposta: Kafka (Integração) > Spark (Processamento) > Object Storage (Bronze) > Spark > OS (Silver) > Spark > OS (Gold)
+Resposta: Kafka (Integração) > Spark (Processamento) > Object Storage (Bronze/Silver/Gold) | Airflow (Osquestrador)
