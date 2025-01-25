@@ -1,5 +1,6 @@
 # Proposta de Arquitetura de Dados
 
+Desenvolver a suas habilidades usando os documentos presentes nesse repo.
 
 *crie um novo arquivo a partir deste com o nome proposta_nome_20250125.md*
 
