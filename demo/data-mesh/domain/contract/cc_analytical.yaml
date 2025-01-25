@@ -1,0 +1,125 @@
+dataContractSpecification: "1.1.0"
+id: "urn:datacontract:cardservices:credit_card_analytical_data"
+info:
+  title: "Credit Card Analytical Data"
+  version: "1.0.0"
+  description: |
+    Aggregated insights into customer credit card usage, including total spending,
+    utilization rates, and transaction counts.
+  owner: "Card Services Team"
+  contact:
+    name: "Jane Doe (Data Product Owner)"
+    url: "https://yourcompany.com/teams/card-services"
+    email: "jane.doe@yourcompany.com"
+
+servers:
+  local:
+    type: local
+    location: "/Users/mateusoliveira/Mateus/owshq/GitHub/ws-construindo-arq-modern-prj-analytics/demo/data-mesh/domain/analytical/credit_card_analytical_data.parquet"
+    format: parquet
+    description: "Local environment setup. Data files are stored locally."
+
+terms:
+  usage: |
+    Data can be used for reports, analytics, and machine learning use cases.
+    Data may be linked and joined with other tables.
+  limitations: |
+    Not suitable for real-time use cases.
+    Data may not be used to identify individual customers.
+    Max data processing per day: 10 TiB
+  billing: "5000 USD per month"
+  noticePeriod: "P3M"
+
+models:
+  credit_card_analytics:
+    description: "Aggregated credit card usage metrics per customer."
+    type: table
+    fields:
+      card_id:
+        title: "Card ID"
+        type: string
+        format: uuid
+        required: true
+        primary: true
+        unique: true
+        description: "Unique identifier for the credit card."
+        example: "a9aef18e-2d0d-41e8-9854-48b516117e9a"
+      customer_id:
+        title: "Customer ID"
+        type: string
+        format: uuid
+        required: true
+        description: "Unique identifier for the customer."
+        example: "0ff39ed7-301f-4bcb-bb52-231a9741951a"
+      total_spent:
+        title: "Total Spent"
+        type: bigint
+        required: true
+        description: "Total amount spent using the credit card."
+        example: "551.73"
+      credit_limit:
+        title: "Credit Limit"
+        type: double
+        required: true
+        description: "Maximum credit limit on the card."
+        example: "21290.0"
+      credit_utilization_rate:
+        title: "Credit Utilization Rate"
+        type: double
+        required: true
+        description: "Rate of credit utilization (total spent / credit limit)."
+        example: "0.026"
+      number_of_transactions:
+        title: "Number of Transactions"
+        type: bigint
+        required: true
+        description: "Total number of transactions associated with the card."
+        example: "15"
+
+definitions:
+  card_id:
+    title: "Card ID"
+    type: string
+    format: uuid
+    description: "Unique identifier for the credit card."
+    example: "a9aef18e-2d0d-41e8-9854-48b516117e9a"
+  customer_id:
+    title: "Customer ID"
+    type: string
+    format: uuid
+    description: "Unique identifier for the customer."
+    example: "0ff39ed7-301f-4bcb-bb52-231a9741951a"
+
+servicelevels:
+  freshness:
+    description: "Data is updated daily at midnight UTC."
+    interval: daily
+    cron: "0 0 * * *"
+  support:
+    description: "Support is available during business hours (9 AM to 5 PM EST) on weekdays."
+    responseTime: "4h"
+  backup:
+    description: "Data is backed up weekly on Sundays at 2 AM UTC."
+    interval: weekly
+    cron: "0 2 * * 0"
+    recoveryTime: "24h"
+    recoveryPoint: "1 week"
+
+quality:
+  checks:
+    credit_card_analytics:
+      - name: "utilization_rate_check"
+        description: "Ensure credit utilization rate is between 0 and 1."
+        expression: "0.0 <= credit_utilization_rate <= 1.0"
+      - name: "limit_spent_check"
+        description: "Ensure total spent does not exceed the credit limit."
+        expression: "total_spent <= credit_limit"
+
+tags:
+  - "credit_card"
+  - "analytics"
+  - "finance"
+
+links:
+  documentation: "https://yourcompany.com/docs/credit_card_analytics"
+  support: "https://yourcompany.com/support"

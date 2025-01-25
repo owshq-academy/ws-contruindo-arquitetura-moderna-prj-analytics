@@ -1,0 +1,7 @@
+Faker==33.3.1
+validate-docbr==1.10.0
+python-dotenv==1.0.0
+pyspark==3.5.4
+delta-spark==3.3.0
+pyiceberg==0.8.1
+apache-flink==1.20.0
